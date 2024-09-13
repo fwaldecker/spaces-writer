@@ -117,3 +117,4 @@ curl -X POST http://localhost:8080/transcribe \
 - The transcription feature uses the Whisper AI model for accurate results.
 
 For more details on the API implementation, please refer to the source code.
+# spaces-writer
