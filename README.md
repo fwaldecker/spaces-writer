@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # No-Code Architects Toolkit
 
@@ -118,5 +119,8 @@ curl -X POST http://localhost:8080/transcribe \
 
 For more details on the API implementation, please refer to the source code.
 # spaces-writer
+# spaces-writer
+=======
+>>>>>>> origin/main
 # spaces-writer
 # spaces-writer
