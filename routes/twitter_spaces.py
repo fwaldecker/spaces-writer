@@ -4,12 +4,6 @@ from services.ffmpeg_processing import process_conversion
 twitter_bp = Blueprint('twitter_spaces', __name__)
 
 
-@twitter_bp.route('/twitter_spaces', methods=['GET'])
-def index():
-    """Renders a simple form to input Twitter Spaces URL"""
-    return render_template('twitter_spaces.html')
-
-
 @twitter_bp.route('/twitter_spaces/submit', methods=['POST'])
 def submit():
     """Handles the form submission for converting Twitter Spaces audio"""
