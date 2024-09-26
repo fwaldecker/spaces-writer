@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, render_template
+from flask import Blueprint, request, jsonify
 from services.ffmpeg_processing import process_conversion
 
 twitter_bp = Blueprint('twitter_spaces', __name__)

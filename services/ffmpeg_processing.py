@@ -1,9 +1,10 @@
 import os
-import ffmpeg
-import requests
+import ffmpeg  # Ensure ffmpeg-python is installed: pip install ffmpeg-python
 from services.file_management import download_file, STORAGE_PATH
 from services.gdrive_service import upload_to_gdrive, upload_to_gcs, GCP_BUCKET_NAME, gcs_client  # Import gcs_client
 from services.twitter_spaces import extract_m3u8_url
+# If the above import still fails, try using the full package name
+import ffmpeg as ffmpeg_python
 
 def process_conversion(media_url, job_id, webhook_url=None):
     """Convert media to MP3 format."""
