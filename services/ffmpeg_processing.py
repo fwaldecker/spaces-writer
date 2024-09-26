@@ -3,9 +3,21 @@ import ffmpeg
 import requests
 from services.file_management import download_file, STORAGE_PATH
 from services.gdrive_service import upload_to_gdrive, upload_to_gcs, GCP_BUCKET_NAME, gcs_client  # Import gcs_client
+from services.twitter_spaces import extract_m3u8_url
 
 def process_conversion(media_url, job_id, webhook_url=None):
     """Convert media to MP3 format."""
+    # Check if the media_url is a Twitter Spaces link
+    if 'twitter.com/i/spaces' in media_url:
+        try:
+            # Extract the .m3u8 URL
+            m3u8_url = extract_m3u8_url(media_url)
+            print(f"Extracted .m3u8 URL: {m3u8_url}")
+            media_url = m3u8_url  # Replace media_url with the .m3u8 link
+        except Exception as e:
+            print(f"Error extracting .m3u8 URL: {str(e)}")
+            raise
+    
     input_filename = download_file(media_url, os.path.join(STORAGE_PATH, f"{job_id}_input"))
     output_filename = f"{job_id}.mp3"
     output_path = os.path.join(STORAGE_PATH, output_filename)
