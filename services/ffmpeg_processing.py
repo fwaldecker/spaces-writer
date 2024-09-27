@@ -145,3 +145,19 @@ def process_video_combination(media_urls, job_id, webhook_url=None):
         print(f"Video combination failed: {str(e)}")
         # Trigger failure webhook if provided
         if webhook_url:
+            send_webhook(webhook_url, {
+                "endpoint": "/combine-videos",
+                "job_id": job_id,
+                "response": None,
+                "code": 500,
+                "message": str(e)
+            })
+        raise
+
+def reprocess_input_files(input_files):
+    reprocessed_files = []
+    for i, input_file in enumerate(input_files):
+        reprocessed_file = os.path.join(STORAGE_PATH, f"reprocessed_{i}.mp4")
+        ffmpeg.input(input_file).output(reprocessed_file, vcodec='libx264', acodec='aac').run(overwrite_output=True)
+        reprocessed_files.append(reprocessed_file)
+    return reprocessed_files
