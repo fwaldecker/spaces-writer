@@ -17,8 +17,4 @@ app.register_blueprint(combine_bp)
 app.register_blueprint(audio_mixing_bp)
 app.register_blueprint(gdrive_upload_bp)
 app.register_blueprint(auth_bp)  # Register the auth_bp blueprint
-app.register_blueprint(twitter_bp)
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+app.register_blueprin
